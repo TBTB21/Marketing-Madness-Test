@@ -59,18 +59,18 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-        window.addEventListener("keydown", (e) => {
+       window.addEventListener("keydown", (e) => {
     const speed = 5; // Adjust for how fast you want the truck to move
     const rotationSpeed = 5; // Adjust for rotation speed
     if (e.key === "ArrowUp") {
-        // Move forward based on current angle
-        truck.x += speed * Math.cos(truck.angle * Math.PI / 180);
-        truck.y += speed * Math.sin(truck.angle * Math.PI / 180);
+        // Move forward (cab-first)
+        truck.x += speed * Math.cos((truck.angle - 90) * Math.PI / 180);
+        truck.y += speed * Math.sin((truck.angle - 90) * Math.PI / 180);
     }
     if (e.key === "ArrowDown") {
-        // Move backward based on current angle
-        truck.x -= speed * Math.cos(truck.angle * Math.PI / 180);
-        truck.y -= speed * Math.sin(truck.angle * Math.PI / 180);
+        // Move backward (opposite direction of cab)
+        truck.x -= speed * Math.cos((truck.angle - 90) * Math.PI / 180);
+        truck.y -= speed * Math.sin((truck.angle - 90) * Math.PI / 180);
     }
     if (e.key === "ArrowLeft") {
         // Rotate left
