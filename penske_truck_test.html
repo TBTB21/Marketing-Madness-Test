@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penske Truck Movement Test</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #111;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 800;
+        canvas.height = 600;
+
+        const truckImage = new Image();
+        truckImage.src = "penske_truck_sprite_sheet.png"; // Placeholder for sprite sheet
+
+        const truck = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            width: 64,
+            height: 64,
+            angle: 0,
+            frame: 0,
+        };
+
+        function drawTruck() {
+            ctx.save();
+            ctx.translate(truck.x, truck.y);
+            ctx.rotate(truck.angle * Math.PI / 180);
+            ctx.drawImage(
+                truckImage,
+                truck.frame * truck.width,
+                0,
+                truck.width,
+                truck.height,
+                -truck.width / 2,
+                -truck.height / 2,
+                truck.width,
+                truck.height
+            );
+            ctx.restore();
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        window.addEventListener("keydown", (e) => {
+            const speed = 5;
+            if (e.key === "ArrowUp") truck.y -= speed;
+            if (e.key === "ArrowDown") truck.y += speed;
+            if (e.key === "ArrowLeft") truck.angle -= 5;
+            if (e.key === "ArrowRight") truck.angle += 5;
+        });
+
+        function gameLoop() {
+            clearCanvas();
+            drawTruck();
+            requestAnimationFrame(gameLoop);
+        }
+
+        truckImage.onload = () => {
+            gameLoop();
+        };
+    </script>
+</body>
+</html>
