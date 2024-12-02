@@ -60,12 +60,28 @@
         }
 
         window.addEventListener("keydown", (e) => {
-            const speed = 5;
-            if (e.key === "ArrowUp") truck.y -= speed;
-            if (e.key === "ArrowDown") truck.y += speed;
-            if (e.key === "ArrowLeft") truck.angle -= 5;
-            if (e.key === "ArrowRight") truck.angle += 5;
-        });
+    const speed = 5; // Adjust for how fast you want the truck to move
+    const rotationSpeed = 5; // Adjust for rotation speed
+    if (e.key === "ArrowUp") {
+        // Move forward based on current angle
+        truck.x += speed * Math.cos(truck.angle * Math.PI / 180);
+        truck.y += speed * Math.sin(truck.angle * Math.PI / 180);
+    }
+    if (e.key === "ArrowDown") {
+        // Move backward based on current angle
+        truck.x -= speed * Math.cos(truck.angle * Math.PI / 180);
+        truck.y -= speed * Math.sin(truck.angle * Math.PI / 180);
+    }
+    if (e.key === "ArrowLeft") {
+        // Rotate left
+        truck.angle -= rotationSpeed;
+    }
+    if (e.key === "ArrowRight") {
+        // Rotate right
+        truck.angle += rotationSpeed;
+    }
+});
+
 
         function gameLoop() {
             clearCanvas();
