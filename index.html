@@ -59,8 +59,14 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
- window.addEventListener("keydown", (e) => {
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Listen for keypresses to control the truck
+window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
+    const rotationSpeed = 5; // Rotation speed (degrees)
 
     if (e.key === "ArrowUp") {
         // Move forward (cab is forward)
@@ -74,14 +80,14 @@
     }
     if (e.key === "ArrowLeft") {
         // Rotate truck counterclockwise
-        truck.angle -= 5;
+        truck.angle -= rotationSpeed;
     }
     if (e.key === "ArrowRight") {
         // Rotate truck clockwise
-        truck.angle += 5;
+        truck.angle += rotationSpeed;
     }
-     
 });
+
         function gameLoop() {
             clearCanvas();
             drawTruck();
