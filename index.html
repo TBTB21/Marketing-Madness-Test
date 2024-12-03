@@ -59,34 +59,29 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-  window.addEventListener("keydown", (e) => {
+ window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
 
     if (e.key === "ArrowUp") {
         // Move forward (cab is forward)
         truck.x -= speed * Math.cos(truck.angle * Math.PI / 180);
         truck.y -= speed * Math.sin(truck.angle * Math.PI / 180);
-        truck.angle = 270; // Face upward
     }
     if (e.key === "ArrowDown") {
         // Move backward (trailer is backward)
         truck.x += speed * Math.cos(truck.angle * Math.PI / 180);
         truck.y += speed * Math.sin(truck.angle * Math.PI / 180);
-        truck.angle = 90; // Face downward
     }
     if (e.key === "ArrowLeft") {
-        truck.x -= speed; // Move truck left
-        truck.angle = 180; // Face left
+        // Rotate truck counterclockwise
+        truck.angle -= 5;
     }
     if (e.key === "ArrowRight") {
-        truck.x += speed; // Move truck right
-        truck.angle = 0; // Face right
+        // Rotate truck clockwise
+        truck.angle += 5;
     }
+     
 });
-
-
-});
-
         function gameLoop() {
             clearCanvas();
             drawTruck();
