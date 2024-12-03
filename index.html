@@ -59,8 +59,7 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
-      window.addEventListener("keydown", (e) => {
-   window.addEventListener("keydown", (e) => {
+  window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
 
     if (e.key === "ArrowUp") {
@@ -83,6 +82,8 @@
         truck.x += speed; // Move truck right
         truck.angle = 0; // Face right
     }
+});
+
 
 });
 
