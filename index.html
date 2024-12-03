@@ -68,24 +68,24 @@ window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
 
     if (e.key === "ArrowUp") {
-        // Move truck toward the top of the screen
+        // Move truck upward and face upward
         truck.y -= speed;
-        truck.angle = 270; // Face upward
+        truck.angle = 0; // Face upward (default angle is 0° for upward)
     }
     if (e.key === "ArrowDown") {
-        // Move truck toward the bottom of the screen
+        // Move truck downward and face downward
         truck.y += speed;
-        truck.angle = 90; // Face downward
+        truck.angle = 180; // Face downward
     }
     if (e.key === "ArrowLeft") {
-        // Move truck toward the left of the screen
+        // Move truck left and face left
         truck.x -= speed;
-        truck.angle = 180; // Face left
+        truck.angle = 270; // Face left
     }
     if (e.key === "ArrowRight") {
-        // Move truck toward the right of the screen
+        // Move truck right and face right
         truck.x += speed;
-        truck.angle = 0; // Face right
+        truck.angle = 90; // Face right
     }
 });
 
