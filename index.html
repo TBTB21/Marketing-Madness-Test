@@ -66,26 +66,25 @@ function clearCanvas() {
 // Listen for keypresses to control the truck
 window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
+    const rotationSpeed = 5; // Rotation speed
 
     if (e.key === "ArrowUp") {
-        // Move forward (cab is forward)
+        // Move forward in the direction the truck is facing
         truck.x -= speed * Math.cos(truck.angle * Math.PI / 180);
         truck.y -= speed * Math.sin(truck.angle * Math.PI / 180);
-        truck.angle = 270; // Face upward
     }
     if (e.key === "ArrowDown") {
-        // Move backward (trailer is backward)
+        // Move backward in the opposite direction the truck is facing
         truck.x += speed * Math.cos(truck.angle * Math.PI / 180);
         truck.y += speed * Math.sin(truck.angle * Math.PI / 180);
-        truck.angle = 90; // Face downward
     }
     if (e.key === "ArrowLeft") {
-        truck.x -= speed; // Move truck left
-        truck.angle = 180; // Face left
+        // Rotate counterclockwise
+        truck.angle -= rotationSpeed;
     }
     if (e.key === "ArrowRight") {
-        truck.x += speed; // Move truck right
-        truck.angle = 0; // Face right
+        // Rotate clockwise
+        truck.angle += rotationSpeed;
     }
 });
 
