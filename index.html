@@ -73,13 +73,12 @@
         truck.y += speed * Math.sin(truck.angle * Math.PI / 180);
     }
     if (e.key === "ArrowLeft") {
-        // Rotate LEFT (clockwise)
-        truck.angle -= rotationSpeed;
-    }
-    if (e.key === "ArrowRight") {
-        // Rotate RIGHT (counterclockwise)
-        truck.angle += rotationSpeed;
-    }
+    truck.angle = (truck.angle - 45) % 360; // Rotate 45° counterclockwise
+}
+if (e.key === "ArrowRight") {
+    truck.angle = (truck.angle + 45) % 360; // Rotate 45° clockwise
+}
+
 });
 
         function gameLoop() {
