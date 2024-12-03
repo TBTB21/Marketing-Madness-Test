@@ -60,24 +60,29 @@
         }
 
       window.addEventListener("keydown", (e) => {
-    const speed = 5; // Adjust for how fast you want the truck to move
-    const rotationSpeed = 5; // Adjust for rotation speed
+   window.addEventListener("keydown", (e) => {
+    const speed = 5; // Movement speed
+
     if (e.key === "ArrowUp") {
-    truck.y -= speed; // Move up
-    truck.angle = 270; // Rotate truck to face up
-}
-if (e.key === "ArrowDown") {
-    truck.y += speed; // Move down
-    truck.angle = 90; // Rotate truck to face down
-}
-if (e.key === "ArrowLeft") {
-    truck.x -= speed; // Move left
-    truck.angle = 180; // Rotate truck to face left
-}
-if (e.key === "ArrowRight") {
-    truck.x += speed; // Move right
-    truck.angle = 0; // Rotate truck to face right
-}
+        // Move forward (cab is forward)
+        truck.x -= speed * Math.cos(truck.angle * Math.PI / 180);
+        truck.y -= speed * Math.sin(truck.angle * Math.PI / 180);
+        truck.angle = 270; // Face upward
+    }
+    if (e.key === "ArrowDown") {
+        // Move backward (trailer is backward)
+        truck.x += speed * Math.cos(truck.angle * Math.PI / 180);
+        truck.y += speed * Math.sin(truck.angle * Math.PI / 180);
+        truck.angle = 90; // Face downward
+    }
+    if (e.key === "ArrowLeft") {
+        truck.x -= speed; // Move truck left
+        truck.angle = 180; // Face left
+    }
+    if (e.key === "ArrowRight") {
+        truck.x += speed; // Move truck right
+        truck.angle = 0; // Face right
+    }
 
 });
 
