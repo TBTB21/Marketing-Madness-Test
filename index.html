@@ -78,22 +78,21 @@ window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
 
     if (e.key === "ArrowUp") {
-        // Move truck forward in its current facing direction
-        truck.x -= speed * Math.sin(truck.angle * Math.PI / 180);
-        truck.y -= speed * Math.cos(truck.angle * Math.PI / 180);
-    }
-    if (e.key === "ArrowDown") {
-        // Move truck backward in its current facing direction
-        truck.x += speed * Math.sin(truck.angle * Math.PI / 180);
-        truck.y += speed * Math.cos(truck.angle * Math.PI / 180);
-    }
-    if (e.key === "ArrowLeft") {
-        // Rotate truck counterclockwise
-        truck.angle -= 10; // Rotate by 10 degrees for smoother turning
-    }
-    if (e.key === "ArrowRight") {
-        // Rotate truck clockwise
-        truck.angle += 10; // Rotate by 10 degrees for smoother turning
+        // Move truck upward and face upward
+        truck.y -= speed;
+        truck.frame = 0; // Up
+    } else if (e.key === "ArrowRight") {
+        // Move truck right and face right
+        truck.x += speed;
+        truck.frame = 1; // Right
+    } else if (e.key === "ArrowDown") {
+        // Move truck downward and face downward
+        truck.y += speed;
+        truck.frame = 2; // Down
+    } else if (e.key === "ArrowLeft") {
+        // Move truck left and face left
+        truck.x -= speed;
+        truck.frame = 3; // Left
     }
 });
 
