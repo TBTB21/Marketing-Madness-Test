@@ -82,13 +82,13 @@
                 truck.frame = spriteDirections.right; // Set sprite frame
             } else if (e.key === "ArrowDown") {
                 truck.y += speed;
-                truck.angle = 225; // Adjusted to face downward with 45° more clockwise
+                truck.angle = 180; // Face downward (corrected)
                 truck.frame = spriteDirections.down; // Set sprite frame
-            else if (e.key === "ArrowLeft") {
-    truck.x -= speed; // Move truck left
-    truck.angle = 270; // Face left
-    truck.frame = spriteDirections.left; // Leftward sprite
-        }
+            } else if (e.key === "ArrowLeft") {
+                truck.x -= speed; // Move truck left
+                truck.angle = 270; // Face left
+                truck.frame = spriteDirections.left; // Leftward sprite
+            }
         });
 
         function gameLoop() {
@@ -103,4 +103,3 @@
     </script>
 </body>
 </html>
-
