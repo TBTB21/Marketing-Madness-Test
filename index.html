@@ -28,32 +28,38 @@
         const truckImage = new Image();
         truckImage.src = "penske_truck_sprite_sheet.png"; // Placeholder for sprite sheet
 
-        const truck = {
-            x: canvas.width / 2,
-            y: canvas.height / 2,
-            width: 64,
-            height: 64,
-            angle: 0,
-            frame: 0,
+       const truck = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    width: 64,
+    height: 64,
+    angle: 0,
+    frame: 0,
+};
+
+// Sprite configuration
+const spriteSheetCols = 4; // Assuming the sprite sheet has 4 directions (up, right, down, left)
+const frameSize = 64; // Each frame is 64x64 pixels
+
         };
 
         function drawTruck() {
-            ctx.save();
-            ctx.translate(truck.x, truck.y);
-            ctx.rotate(truck.angle * Math.PI / 180);
-            ctx.drawImage(
-                truckImage,
-                truck.frame * truck.width,
-                0,
-                truck.width,
-                truck.height,
-                -truck.width / 2,
-                -truck.height / 2,
-                truck.width,
-                truck.height
-            );
-            ctx.restore();
-        }
+    ctx.save();
+    ctx.translate(truck.x, truck.y);
+    ctx.rotate((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
+    ctx.drawImage(
+        truckImage,
+        truck.frame * frameSize, // Select the correct frame column
+        0,                      // Single row in sprite sheet
+        frameSize,              // Frame width
+        frameSize,              // Frame height
+        -frameSize / 2,         // Center the truck on x-axis
+        -frameSize / 2,         // Center the truck on y-axis
+        frameSize,              // Frame width
+        frameSize               // Frame height
+    );
+    ctx.restore();
+}
 
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
