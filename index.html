@@ -42,23 +42,24 @@
         const spriteSheetCols = 4; // Assuming the sprite sheet has 4 directions (up, right, down, left)
         const frameSize = 64; // Each frame is 64x64 pixels
 
-        function drawTruck() {
-            ctx.save();
-            ctx.translate(truck.x, truck.y);
-            ctx.rotate((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
-            ctx.drawImage(
-                truckImage,
-                truck.frame * frameSize, // Select the correct frame column
-                0,                      // Single row in sprite sheet
-                frameSize,              // Frame width
-                frameSize,              // Frame height
-                -frameSize / 2,         // Center the truck on x-axis
-                -frameSize / 2,         // Center the truck on y-axis
-                frameSize,              // Frame width
-                frameSize               // Frame height
-            );
-            ctx.restore();
-        }
+        // Function to draw the truck on the canvas
+       function drawTruck() {
+    ctx.save();
+    ctx.translate(truck.x, truck.y);
+    ctx.rotate((truck.angle + SPRITE_OFFSET) * Math.PI / 180); // Ensure the sprite rotates with offset
+    ctx.drawImage(
+        truckImage,
+        truck.frame * frameSize, // Select the correct frame column
+        0,                      // Single row in sprite sheet
+        frameSize,              // Frame width
+        frameSize,              // Frame height
+        -frameSize / 2,         // Center the truck on x-axis
+        -frameSize / 2,         // Center the truck on y-axis
+        frameSize,              // Frame width
+        frameSize               // Frame height
+    );
+    ctx.restore();
+}
 
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -82,7 +83,7 @@ window.addEventListener("keydown", (e) => {
         // Move truck left and face left
         truck.x -= speed;
         truck.frame = 3; // Left
-        truck.angle = 270; // Face left
+        truck.angle = -90; // Face left (adjusted for sprite orientation)
     } else if (e.key === "ArrowRight") {
         // Move truck right and face right
         truck.x += speed;
