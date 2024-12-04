@@ -25,10 +25,7 @@
         canvas.height = 600;
 
         const truckImage = new Image();
-        truckImage.src = "penske_truck_sprite_sheet.png"; // Sprite sheet for the truck
-
-        // Offset to align the sprite's default orientation with movement direction
-        const SPRITE_OFFSET = -90; // Adjusts for the sprite facing upward by default
+        truckImage.src = "penske_truck_sprite_sheet.png"; // Ensure the sprite sheet filename matches
 
         const truck = {
             x: canvas.width / 2,
@@ -39,58 +36,60 @@
             frame: 0,
         };
 
-        const spriteSheetCols = 4; // Assuming the sprite sheet has 4 directions (up, right, down, left)
+        // Sprite configuration
+        const SPRITE_OFFSET = -90; // Adjust for default upward orientation
         const frameSize = 64; // Each frame is 64x64 pixels
+        const spriteDirections = {
+            up: 0,
+            right: 1,
+            down: 2,
+            left: 3,
+        };
 
-        // Function to draw the truck on the canvas
-       function drawTruck() {
-    ctx.save();
-    ctx.translate(truck.x, truck.y);
-    ctx.rotate((truck.angle + SPRITE_OFFSET) * Math.PI / 180); // Ensure the sprite rotates with offset
-    ctx.drawImage(
-        truckImage,
-        truck.frame * frameSize, // Select the correct frame column
-        0,                      // Single row in sprite sheet
-        frameSize,              // Frame width
-        frameSize,              // Frame height
-        -frameSize / 2,         // Center the truck on x-axis
-        -frameSize / 2,         // Center the truck on y-axis
-        frameSize,              // Frame width
-        frameSize               // Frame height
-    );
-    ctx.restore();
-}
+        function drawTruck() {
+            ctx.save();
+            ctx.translate(truck.x, truck.y);
+            ctx.rotate((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
+            ctx.drawImage(
+                truckImage,
+                truck.frame * frameSize, // Select the correct frame column
+                0,                      // Single row in sprite sheet
+                frameSize,              // Frame width
+                frameSize,              // Frame height
+                -frameSize / 2,         // Center the truck on x-axis
+                -frameSize / 2,         // Center the truck on y-axis
+                frameSize,              // Frame width
+                frameSize               // Frame height
+            );
+            ctx.restore();
+        }
 
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
         // Listen for keypresses to control the truck
-window.addEventListener("keydown", (e) => {
-    const speed = 5; // Movement speed
+        window.addEventListener("keydown", (e) => {
+            const speed = 5;
 
-    if (e.key === "ArrowUp") {
-        // Move truck upward and face upward
-        truck.y -= speed;
-        truck.frame = 0; // Up
-        truck.angle = 0; // Face upward
-    } else if (e.key === "ArrowDown") {
-        // Move truck downward and face downward
-        truck.y += speed;
-        truck.frame = 2; // Down
-        truck.angle = 180; // Face downward
-    } else if (e.key === "ArrowLeft") {
-        // Move truck left and face left
-        truck.x -= speed;
-        truck.frame = 3; // Left
-        truck.angle = -90; // Face left (adjusted for sprite orientation)
-    } else if (e.key === "ArrowRight") {
-        // Move truck right and face right
-        truck.x += speed;
-        truck.frame = 1; // Right
-        truck.angle = 90; // Face right
-    }
-});
+            if (e.key === "ArrowUp") {
+                truck.y -= speed;
+                truck.angle = 0; // Face upward
+                truck.frame = spriteDirections.up; // Set sprite frame
+            } else if (e.key === "ArrowRight") {
+                truck.x += speed;
+                truck.angle = 90; // Face right
+                truck.frame = spriteDirections.right; // Set sprite frame
+            } else if (e.key === "ArrowDown") {
+                truck.y += speed;
+                truck.angle = 180; // Face downward
+                truck.frame = spriteDirections.down; // Set sprite frame
+            } else if (e.key === "ArrowLeft") {
+                truck.x -= speed;
+                truck.angle = 270; // Face left
+                truck.frame = spriteDirections.left; // Set sprite frame
+            }
+        });
 
         function gameLoop() {
             clearCanvas();
@@ -104,4 +103,3 @@ window.addEventListener("keydown", (e) => {
     </script>
 </body>
 </html>
-
