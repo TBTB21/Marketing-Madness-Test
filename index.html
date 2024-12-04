@@ -74,16 +74,16 @@
 
     if (e.key === "ArrowUp") {
         truck.y -= speed; // Move upward
-        truck.angle = 180; // Face upward
+        truck.angle = 0; // Face upward
         truck.frame = spriteDirections.up; // Use upward-facing sprite
     } else if (e.key === "ArrowRight") {
         truck.x += speed; // Move right
         truck.angle = 90; // Face right
         truck.frame = spriteDirections.right; // Use right-facing sprite
     } else if (e.key === "ArrowDown") {
-    truck.y += speed; // Move downward
-    truck.angle = 180; // Rotate 180° to face downward
-    truck.frame = spriteDirections.down; // Use downward-facing sprite
+        truck.y += speed; // Move downward
+        truck.angle = 180; // Face downward
+        truck.frame = spriteDirections.down; // Use downward-facing sprite
     } else if (e.key === "ArrowLeft") {
         truck.x -= speed; // Move left
         truck.angle = 270; // Face left
