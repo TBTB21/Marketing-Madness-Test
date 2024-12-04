@@ -65,27 +65,31 @@
         }
 
         // Listen for keypresses to control the truck
-        window.addEventListener("keydown", (e) => {
-            const speed = 5; // Movement speed
+window.addEventListener("keydown", (e) => {
+    const speed = 5; // Movement speed
 
-            if (e.key === "ArrowUp") {
-                // Move truck upward and face upward
-                truck.y -= speed;
-                truck.frame = 0; // Up
-            } else if (e.key === "ArrowRight") {
-                // Move truck right and face right
-                truck.x += speed;
-                truck.frame = 1; // Right
-            } else if (e.key === "ArrowDown") {
-                // Move truck downward and face downward
-                truck.y += speed;
-                truck.frame = 2; // Down
-            } else if (e.key === "ArrowLeft") {
-                // Move truck left and face left
-                truck.x -= speed;
-                truck.frame = 3; // Left
-            }
-        });
+    if (e.key === "ArrowUp") {
+        // Move truck upward and face upward
+        truck.y -= speed;
+        truck.frame = 0; // Up
+        truck.angle = 0; // Face upward
+    } else if (e.key === "ArrowDown") {
+        // Move truck downward and face downward
+        truck.y += speed;
+        truck.frame = 2; // Down
+        truck.angle = 180; // Face downward
+    } else if (e.key === "ArrowLeft") {
+        // Move truck left and face left
+        truck.x -= speed;
+        truck.frame = 3; // Left
+        truck.angle = 270; // Face left
+    } else if (e.key === "ArrowRight") {
+        // Move truck right and face right
+        truck.x += speed;
+        truck.frame = 1; // Right
+        truck.angle = 90; // Face right
+    }
+});
 
         function gameLoop() {
             clearCanvas();
