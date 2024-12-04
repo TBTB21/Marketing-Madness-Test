@@ -64,28 +64,32 @@ function clearCanvas() {
 }
 
 // Listen for keypresses to control the truck
+// Offset to align the sprite's default orientation with movement direction
+const SPRITE_OFFSET = -90; // Adjusts for the sprite facing upward by default
+
+// Listen for keypresses to control the truck
 window.addEventListener("keydown", (e) => {
     const speed = 5; // Movement speed
 
     if (e.key === "ArrowUp") {
-        // Move truck upward and face upward
-        truck.y -= speed;
-        truck.angle = 0; // Face upward (default angle is 0° for upward)
+        // Move forward (cab is forward)
+        truck.x -= speed * Math.cos((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
+        truck.y -= speed * Math.sin((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
+        truck.angle = 0; // Logical upward direction
     }
     if (e.key === "ArrowDown") {
-        // Move truck downward and face downward
-        truck.y += speed;
-        truck.angle = 180; // Face downward
+        // Move backward (trailer is backward)
+        truck.x += speed * Math.cos((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
+        truck.y += speed * Math.sin((truck.angle + SPRITE_OFFSET) * Math.PI / 180);
+        truck.angle = 180; // Logical downward direction
     }
     if (e.key === "ArrowLeft") {
-        // Move truck left and face left
-        truck.x -= speed;
-        truck.angle = 270; // Face left
+        // Rotate truck counterclockwise
+        truck.angle = 270; // Logical leftward direction
     }
     if (e.key === "ArrowRight") {
-        // Move truck right and face right
-        truck.x += speed;
-        truck.angle = 90; // Face right
+        // Rotate truck clockwise
+        truck.angle = 90; // Logical rightward direction
     }
 });
 
